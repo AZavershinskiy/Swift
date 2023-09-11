@@ -3,5 +3,5 @@
 var a = 0
 while a <= 100 {
     print(a, terminator: " ")
-    a += 1
+    a += 2
 }
