@@ -1,5 +1,7 @@
 // Task 1-4
-protocol MenuProtocol {}
+protocol MenuProtocol {
+	var cost: Double
+}
 
 struct Pizza: MenuProtocol {
 	var cost: Double
