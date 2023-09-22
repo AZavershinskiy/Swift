@@ -1,6 +1,6 @@
 // Task 1-4
 protocol MenuProtocol {
-	var cost: Double
+	var cost: Double { get }
 }
 
 struct Pizza: MenuProtocol {
@@ -61,7 +61,7 @@ protocol WorkProtocol {
 
 extension Pizzeria: WorkProtocol {
 	func open() {
-		print("The pizzeria is open")
+		print("Pizzeria is open")
 	}
 	
 	func closed() {
