@@ -35,7 +35,7 @@ struct Employee {
 
 class Table {
 	var seats: Int
-	var pizzeria: Pizzeria
+	weak var pizzeria: Pizzeria?
 	
 	init(seats: Int, pizzeria: Pizzeria) {
 		self.seats = seats
