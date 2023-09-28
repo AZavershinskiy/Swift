@@ -103,5 +103,5 @@ class NewViewController: UIViewController {
 			view6.heightAnchor.constraint(equalTo: view1.heightAnchor),
 			view6.leadingAnchor.constraint(equalTo: view5.trailingAnchor, constant: 5)
 		])
-	}	
+	}
 }
