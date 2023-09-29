@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		87D8017D2AC716150005053F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D8017C2AC716150005053F /* TableViewController.swift */; };
+		87D8017F2AC71B190005053F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D8017E2AC71B190005053F /* TableViewCell.swift */; };
+		87D801812AC721190005053F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D801802AC721190005053F /* CollectionViewController.swift */; };
+		87D801832AC722DC0005053F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D801822AC722DC0005053F /* CollectionViewCell.swift */; };
+		87D801852AC72D810005053F /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D801842AC72D810005053F /* ImageViewController.swift */; };
 		87FB51B42AC1D893007DC934 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB51B32AC1D893007DC934 /* AppDelegate.swift */; };
 		87FB51B62AC1D893007DC934 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB51B52AC1D893007DC934 /* SceneDelegate.swift */; };
 		87FB51B82AC1D893007DC934 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FB51B72AC1D893007DC934 /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		87D8017C2AC716150005053F /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		87D8017E2AC71B190005053F /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		87D801802AC721190005053F /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		87D801822AC722DC0005053F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		87D801842AC72D810005053F /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		87FB51B02AC1D893007DC934 /* Sem01App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sem01App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87FB51B32AC1D893007DC934 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		87FB51B52AC1D893007DC934 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +73,11 @@
 				87FB51BE2AC1D894007DC934 /* LaunchScreen.storyboard */,
 				87FB51C12AC1D894007DC934 /* Info.plist */,
 				87FB51C72AC1D92F007DC934 /* NewViewController.swift */,
+				87D8017C2AC716150005053F /* TableViewController.swift */,
+				87D8017E2AC71B190005053F /* TableViewCell.swift */,
+				87D801802AC721190005053F /* CollectionViewController.swift */,
+				87D801822AC722DC0005053F /* CollectionViewCell.swift */,
+				87D801842AC72D810005053F /* ImageViewController.swift */,
 			);
 			path = Sem01App;
 			sourceTree = "<group>";
@@ -138,8 +153,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				87FB51B82AC1D893007DC934 /* ViewController.swift in Sources */,
+				87D801852AC72D810005053F /* ImageViewController.swift in Sources */,
 				87FB51B42AC1D893007DC934 /* AppDelegate.swift in Sources */,
+				87D801832AC722DC0005053F /* CollectionViewCell.swift in Sources */,
 				87FB51B62AC1D893007DC934 /* SceneDelegate.swift in Sources */,
+				87D8017F2AC71B190005053F /* TableViewCell.swift in Sources */,
+				87D801812AC721190005053F /* CollectionViewController.swift in Sources */,
+				87D8017D2AC716150005053F /* TableViewController.swift in Sources */,
 				87FB51C82AC1D92F007DC934 /* NewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
