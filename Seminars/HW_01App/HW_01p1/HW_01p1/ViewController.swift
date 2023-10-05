@@ -6,103 +6,37 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
 	
-	private var view1: UIImageView = {
-		let imageView = UIImageView(image: UIImage(systemName: "dog"))
-		imageView.backgroundColor = .white
-		return imageView
-	}()
-	
-	private var view2: UILabel = {
-		let label = UILabel()
-		label.text = "Authorization"
-		label.textAlignment = .center
-		label.backgroundColor = .white
-		label.textColor = .black
-		return label
-	}()
-	
-	private var view3: UITextField = {
-		let textView = UITextField()
-		textView.placeholder = "Username"
-		textView.textAlignment = .left
-		textView.backgroundColor = .white
-		return textView
-	}()
-	
-	private var view4: UITextField = {
-		let textView = UITextField()
-		textView.placeholder = "Password"
-		textView.isSecureTextEntry = true
-		textView.textAlignment = .left
-		textView.backgroundColor = .white
-		return textView
-	}()
-	
-	private var view5: UIButton = {
-		let button = UIButton()
-		button.setTitle("Log in", for: .normal)
-		button.setTitleColor(.black, for: .normal)
-		button.backgroundColor = .white
-		return button
+	private lazy var webView: WKWebView = {
+		let webView = WKWebView(frame: view.bounds)
+		webView.navigationDelegate = self
+		return webView
 	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .blue
-		view5.addTarget(self, action: #selector(tap), for: .touchUpInside)
+		view.backgroundColor = .white
 		
 		setupViews()
+		
+		let url = URL(string: "https://oauth.vk.com/authorize?client_id=51763887&redirect_uri=https://oauth.vk.com/blank.html&scope=262150&display=mobile&response_type=token&v=5.154")
+		webView.load(URLRequest(url: url!))
 	}
 	
 	private func setupViews() {
-		view.addSubview(view1)
-		view.addSubview(view2)
-		view.addSubview(view3)
-		view.addSubview(view4)
-		view.addSubview(view5)
+		view.addSubview(webView)
 		
-		setupConstraints()
+		//		setupConstraints()
 	}
 	
-	private func setupConstraints() {
-		view1.translatesAutoresizingMaskIntoConstraints = false
-		view2.translatesAutoresizingMaskIntoConstraints = false
-		view3.translatesAutoresizingMaskIntoConstraints = false
-		view4.translatesAutoresizingMaskIntoConstraints = false
-		view5.translatesAutoresizingMaskIntoConstraints = false
-		
-		NSLayoutConstraint.activate([
-			view1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-			view1.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			view1.widthAnchor.constraint(equalToConstant: view.frame.size.width / 1.5),
-			view1.heightAnchor.constraint(equalToConstant: view.frame.size.width / 3),
-			
-			view2.topAnchor.constraint(equalTo: view1.bottomAnchor, constant: 40),
-			view2.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			view2.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
-			view2.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
-			
-			view3.topAnchor.constraint(equalTo: view2.bottomAnchor, constant: 20),
-			view3.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			view3.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
-			view3.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-			
-			view4.topAnchor.constraint(equalTo: view3.bottomAnchor, constant: 10),
-			view4.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			view4.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
-			view4.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-			
-			view5.topAnchor.constraint(equalTo: view4.bottomAnchor, constant: 20),
-			view5.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			view5.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: 30),
-			view5.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
-		])
-	}
+	//	private func setupConstraints() {
+	//		NSLayoutConstraint.activate([])
+	//	}
 	
-	@objc func tap() {
+	private func tap() {
 		
 		let tab = UINavigationController(rootViewController: FriendsViewController())
 		tab.tabBarItem.title = "Friends"
@@ -125,3 +59,23 @@ class ViewController: UIViewController {
 	}
 }
 
+extension ViewController: WKNavigationDelegate {
+	func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping(WKNavigationResponsePolicy) -> Void) {
+		guard let url = navigationResponse.response.url, url.path == "/blank.html", let fragment = url.fragment else {
+			decisionHandler(.allow)
+			return
+		}
+		let params = fragment.components(separatedBy: "&").map{ $0.components(separatedBy: "=") }.reduce([String: String]()) { result, param in
+			var dict = result
+			let key = param[0]
+			let value = param[1]
+			dict[key] = value
+			return dict
+		}
+		NetworkService.token = params["access_token"]!
+//		NetworkService.userID = params["user_id"]!
+		decisionHandler(.cancel)
+		webView.removeFromSuperview()
+		tap()
+	}
+}
