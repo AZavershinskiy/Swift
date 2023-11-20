@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  HW_01p1
 //
-//  Created by Andrey Zavershinskiy on 14.11.2023
+//  Created by Andrey Zavershinskiy on 14.11.2023.
 //
 
 import UIKit
