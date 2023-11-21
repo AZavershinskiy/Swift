@@ -43,3 +43,7 @@ final class PhotoCell: UICollectionViewCell {
 		])
 	}
 }
+
+#Preview {
+	PhotoCell()
+}

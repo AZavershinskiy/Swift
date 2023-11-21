@@ -26,3 +26,7 @@ final class GroupsViewController: UITableViewController {
 		GroupCell()
 	}
 }
+
+#Preview {
+	GroupsViewController()
+}

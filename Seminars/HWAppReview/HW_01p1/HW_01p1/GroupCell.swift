@@ -66,3 +66,7 @@ final class GroupCell: UITableViewCell {
 		])
 	}
 }
+
+#Preview {
+	GroupCell()
+}

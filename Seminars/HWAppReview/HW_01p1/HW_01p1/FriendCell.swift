@@ -43,14 +43,18 @@ final class FriendCell: UITableViewCell {
 		NSLayoutConstraint.activate([
 			friendImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 			friendImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-			friendImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+			friendImageView.heightAnchor.constraint(equalToConstant: 50),
 			friendImageView.widthAnchor.constraint(equalTo: friendImageView.heightAnchor),
-			friendImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
 			
-			text.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+			text.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
 			text.leadingAnchor.constraint(equalTo: friendImageView.trailingAnchor, constant: 10),
-			text.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+			text.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+			text.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
 		])
 	}
 	
+}
+
+#Preview {
+	FriendCell()
 }

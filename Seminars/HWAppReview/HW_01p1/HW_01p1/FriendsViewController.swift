@@ -26,3 +26,7 @@ final class FriendsViewController: UITableViewController {
 		FriendCell()
 	}
 }
+
+#Preview {
+	FriendsViewController()
+}
