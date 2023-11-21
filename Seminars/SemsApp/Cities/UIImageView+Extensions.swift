@@ -20,7 +20,7 @@ extension UIImageView {
             
             let picture = try? JSONDecoder().decode(DogPicture.self, from: data)
             
-            print(picture)
+			print(picture)
         }.resume()
     }
 }
