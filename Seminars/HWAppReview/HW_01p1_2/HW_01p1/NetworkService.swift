@@ -11,39 +11,41 @@ final class NetworkService {
 	private let session = URLSession.shared
 	
 	static var token = ""
-	static var userID = ""
+//	static var userID = ""
 	
 	func getFriends() {
-		guard let url = URL(string: "https://api.vk.com/method/friends.get?fields=photo_50&access_token=\(NetworkService.token)&v=5.154") else { return }
+		guard let url = URL(string: "https://api.vk.com/method/friends.get?access_token=\(NetworkService.token)&fields=photo_50&count=2&v=5.154") else { return }
 		
-		session.dataTask(with: url) { data, _, error in
+		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
 				let friends = try JSONDecoder().decode(FriendsModel.self, from: data)
 				print(friends)
+				print("---")
 			} catch { print(error) }
 		}.resume()
 	}
 	
 	func getGroups() {
-		guard let url = URL(string: "https://api.vk.com/method/groups.get?access_token=\(NetworkService.token)&fields=description&v=5.154&extended=1") else { return }
+		guard let url = URL(string: "https://api.vk.com/method/groups.get?access_token=\(NetworkService.token)&fields=description&count=2&v=5.154&extended=1") else { return }
 		
-		session.dataTask(with: url) { data, _, error in
+		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
 				let groups = try JSONDecoder().decode(GroupsModel.self, from: data)
 				print(groups)
+				print("---")
 			} catch { print(error) }
 		}.resume()
 	}
 	
 	func getPhotos() {
-		guard let url = URL(string: "https://api.vk.com/method/photos.get?fields=bdate&access_token=\(NetworkService.token)&v=5.154&album_id=profile") else { return }
+		guard let url = URL(string: "https://api.vk.com/method/photos.get?access_token=\(NetworkService.token)&count=1&v=5.199&album_id=profile") else { return }
 		
-		session.dataTask(with: url) { data, _, error in
+		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
-				let photos = try JSONDecoder().decode(GroupsModel.self, from: data)
+				let photos = try JSONDecoder().decode(PhotosModel.self, from: data)
 				print(photos)
 			} catch { print(error) }
 		}.resume()

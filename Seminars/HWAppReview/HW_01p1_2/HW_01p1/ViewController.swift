@@ -22,7 +22,7 @@ class ViewController: UIViewController {
 		
 		setupViews()
 		
-		let url = URL(string: "https://oauth.vk.com/authorize?client_id=51797989&redirect_uri=https://oauth.vk.com/blank.html&scope=262150&display=mobile&response_type=token")
+		let url = URL(string: "https://oauth.vk.com/authorize?client_id=51797989&redirect_uri=https://oauth.vk.com/blank.html&display=mobile&scope=262150&response_type=token")
 		webView.load(URLRequest(url: url!))
 	}
 	
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 	//
 	//		NSLayoutConstraint.activate([ view1 ]) }
 	
-	func tap() {
+	private func tap() {
 		
 		let tab = UINavigationController(rootViewController: FriendsViewController())
 		tab.tabBarItem.title = "Friends"
@@ -73,10 +73,13 @@ extension ViewController: WKNavigationDelegate {
 			return dict
 		}
 		NetworkService.token = params["access_token"]!
+		//		print(NetworkService.token)
 		//		NetworkService.userID = params["user_id"]!
 		decisionHandler(.cancel)
 		webView.removeFromSuperview()
 		tap()
 	}
 }
+
+
 

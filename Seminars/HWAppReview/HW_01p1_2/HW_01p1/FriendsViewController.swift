@@ -16,6 +16,7 @@ final class FriendsViewController: UITableViewController {
 		tableView.backgroundColor = .white
 		navigationController?.navigationBar.tintColor = .black
 		navigationController?.navigationBar.barTintColor = .white
+		NetworkService().getFriends()
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

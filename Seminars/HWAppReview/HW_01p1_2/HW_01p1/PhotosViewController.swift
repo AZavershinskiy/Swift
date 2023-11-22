@@ -13,6 +13,7 @@ final class PhotosViewController: UICollectionViewController {
 		super.viewDidLoad()
 		title = "Photos"
 		collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: Constants.Identifier.photoCellIdentifier)
+		NetworkService().getPhotos()
 	}
 	
 	override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

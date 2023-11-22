@@ -12,7 +12,7 @@ struct GroupsModel: Decodable {
 }
 
 struct Groups: Decodable {
-	var item: [Group]
+	var items: [Group]
 }
 
 struct Group: Decodable {

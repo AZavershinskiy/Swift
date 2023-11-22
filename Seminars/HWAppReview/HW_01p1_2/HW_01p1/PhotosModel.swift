@@ -12,12 +12,12 @@ struct PhotosModel: Decodable {
 }
 
 struct Photos: Decodable {
-	var item: [Photo]
+	var items: [Photo]?
 }
 
 struct Photo: Decodable {
 	var id: Int
-	var text: String?
+	var text: String
 	var sizes: [Sizes]
 }
 
