@@ -59,8 +59,8 @@ final class GroupCell: UITableViewCell {
 			text.leadingAnchor.constraint(equalTo: groupsImageView.trailingAnchor, constant: 10),
 			text.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
 			
-			text2.topAnchor.constraint(equalTo: text.bottomAnchor, constant: 10),
-			text2.leadingAnchor.constraint(equalTo: text.trailingAnchor),
+			text2.topAnchor.constraint(equalTo: text.bottomAnchor, constant: 5),
+			text2.leadingAnchor.constraint(equalTo: text.leadingAnchor),
 			text2.trailingAnchor.constraint(equalTo: text.trailingAnchor),
 			text2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
 		])
