@@ -16,10 +16,7 @@ final class CustomCollectionViewCell: UICollectionViewCell {
         imageView.image = UIImage(named: "VK Logo")
         contentView.addSubview(imageView)
         setupConstraints()
-        let gestureRecognizer = UITapGestureRecognizer(
-            target: self,
-            action: #selector(tap)
-        )
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         addGestureRecognizer(gestureRecognizer)
         imageView.getDogImage()
     }

@@ -8,22 +8,27 @@
 import UIKit
 
 final class FriendsViewController: UITableViewController {
+	private var friends = [Friend]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Friends"
-		view.backgroundColor = .white
-		tableView.backgroundColor = .white
-		navigationController?.navigationBar.tintColor = .black
-		navigationController?.navigationBar.barTintColor = .white
-		NetworkService().getFriends()
+		tableView.register(FriendCell.self, forCellReuseIdentifier: Constants.Identifier.photoCellIdentifier)
+		NetworkService().getFriends{ [weak self] friends in
+			self?.friends = friends
+			DispatchQueue.main.async {
+				self?.tableView.reloadData()
+			}
+		}
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		5
+		friends.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		FriendCell()
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifier.photoCellIdentifier, for: indexPath) as? FriendCell else { return UITableViewCell() }
+		cell.updateCell(model: friends[indexPath.row])
+		return cell
 	}
 }

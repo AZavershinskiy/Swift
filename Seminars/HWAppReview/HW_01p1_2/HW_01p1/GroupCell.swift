@@ -11,17 +11,15 @@ final class GroupCell: UITableViewCell {
 	
 	private var groupsImageView = UIImageView(image: UIImage(systemName: "dog"))
 	
-	private var text: UILabel = {
+	private var groupName: UILabel = {
 		let label = UILabel()
 		label.text = "Group's name"
-		label.textColor = .black
 		return label
 	}()
 	
-	private var text2: UILabel = {
+	private var groupDescription: UILabel = {
 		let label = UILabel()
 		label.text = "Description"
-		label.textColor = .black
 		return label
 	}()
 	
@@ -36,18 +34,22 @@ final class GroupCell: UITableViewCell {
 		setupViews()
 	}
 	
+	func updateCell(model: Group) {
+		
+	}
+	
 	private func setupViews() {
 		contentView.addSubview(groupsImageView)
-		contentView.addSubview(text)
-		contentView.addSubview(text2)
+		contentView.addSubview(groupName)
+		contentView.addSubview(groupDescription)
 		
 		setupConstraints()
 	}
 	
 	private func setupConstraints() {
 		groupsImageView.translatesAutoresizingMaskIntoConstraints = false
-		text.translatesAutoresizingMaskIntoConstraints = false
-		text2.translatesAutoresizingMaskIntoConstraints = false
+		groupName.translatesAutoresizingMaskIntoConstraints = false
+		groupDescription.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
 			groupsImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
@@ -55,14 +57,14 @@ final class GroupCell: UITableViewCell {
 			groupsImageView.heightAnchor.constraint(equalToConstant: 50),
 			groupsImageView.widthAnchor.constraint(equalTo: groupsImageView.heightAnchor),
 			
-			text.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-			text.leadingAnchor.constraint(equalTo: groupsImageView.trailingAnchor, constant: 10),
-			text.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+			groupName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+			groupName.leadingAnchor.constraint(equalTo: groupsImageView.trailingAnchor, constant: 10),
+			groupName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
 			
-			text2.topAnchor.constraint(equalTo: text.bottomAnchor, constant: 5),
-			text2.leadingAnchor.constraint(equalTo: text.leadingAnchor),
-			text2.trailingAnchor.constraint(equalTo: text.trailingAnchor),
-			text2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+			groupDescription.topAnchor.constraint(equalTo: groupName.bottomAnchor, constant: 5),
+			groupDescription.leadingAnchor.constraint(equalTo: groupName.leadingAnchor),
+			groupDescription.trailingAnchor.constraint(equalTo: groupName.trailingAnchor),
+			groupDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
 		])
 	}
 }

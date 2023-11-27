@@ -47,8 +47,8 @@ final class NetworkService {
             guard let data else { return }
             
             do {
-                let cities = try JSONDecoder().decode(NewsResult.self, from: data).results
-                print(cities)
+                let news = try JSONDecoder().decode(NewsResult.self, from: data).results
+                print(news)
             } catch {
                 print(error)
             }
@@ -62,8 +62,8 @@ final class NetworkService {
             guard let data else { return }
             
             do {
-                let cities = try JSONDecoder().decode(PlacesResults.self, from: data).results
-                print(cities)
+                let places = try JSONDecoder().decode(PlacesResults.self, from: data).results
+                print(places)
             } catch {
                 print(error)
             }
@@ -77,8 +77,8 @@ final class NetworkService {
             guard let data else { return }
             
             do {
-                let cities = try JSONDecoder().decode(MoviesResults.self, from: data).results
-                print(cities)
+                let movies = try JSONDecoder().decode(MoviesResults.self, from: data).results
+                print(movies)
             } catch {
                 print(error)
             }
