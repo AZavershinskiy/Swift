@@ -9,7 +9,7 @@ import UIKit
 
 final class GroupCell: UITableViewCell {
 	
-	private var groupsImageView = UIImageView(image: UIImage(systemName: "dog"))
+	private var groupsImageView = UIImageView()
 	
 	private var groupName: UILabel = {
 		let label = UILabel()
@@ -35,7 +35,17 @@ final class GroupCell: UITableViewCell {
 	}
 	
 	func updateCell(model: Group) {
-		
+		groupName.text = model.name
+		groupDescription.text = model.description
+		DispatchQueue.global().async {
+			if let url = URL(string: model.photo ?? ""),
+			   let data = try? Data(contentsOf: url)
+			{
+				DispatchQueue.main.async {
+					self.groupsImageView.image = UIImage(data: data)
+				}
+			}
+		}
 	}
 	
 	private func setupViews() {

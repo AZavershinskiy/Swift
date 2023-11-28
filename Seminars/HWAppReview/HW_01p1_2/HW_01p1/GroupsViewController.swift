@@ -8,22 +8,28 @@
 import UIKit
 
 final class GroupsViewController: UITableViewController {
+	private var groups = [Group]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Groups"
-		view.backgroundColor = .white
-		tableView.backgroundColor = .white
-		navigationController?.navigationBar.tintColor = .black
-		navigationController?.navigationBar.barTintColor = .white
-		NetworkService().getGroups()
+		tableView.register(GroupCell.self, forCellReuseIdentifier: Constants.Identifier.photoCellIdentifier)
+		NetworkService().getGroups{ [weak self] groups in
+			self?.groups = groups
+			DispatchQueue.main.async {
+				self?.tableView.reloadData()
+			}
+		}
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		5
+		groups.count
 	}
 	
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		GroupCell()
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Identifier.photoCellIdentifier, for: indexPath) as? GroupCell else { return UITableViewCell() }
+		cell.updateCell(model: groups[indexPath.row])
+		return cell
+
 	}
 }

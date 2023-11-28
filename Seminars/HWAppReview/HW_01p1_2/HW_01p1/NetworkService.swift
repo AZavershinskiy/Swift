@@ -11,42 +11,42 @@ final class NetworkService {
 	private let session = URLSession.shared
 	
 	static var token = ""
-//	static var userID = ""
+	//	static var userID = ""
 	
 	func getFriends(completion: @escaping ([Friend]) -> Void) {
-		guard let url = URL(string: "https://api.vk.com/method/friends.get?access_token=\(NetworkService.token)&fields=photo_50,online&count=2&v=5.199") else { return }
+		guard let url = URL(string: "https://api.vk.com/method/friends.get?access_token=\(NetworkService.token)&fields=photo_50,online&v=5.199&count=10") else { return }
 		
 		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
-				let friends = try JSONDecoder().decode([Friend].self, from: data)
+				let friends = try JSONDecoder().decode(FriendsModel.self, from: data).response.items
 				completion(friends)
 			} catch { print(error) }
 		}.resume()
 	}
 	
-	func getGroups() {
-		guard let url = URL(string: "https://api.vk.com/method/groups.get?access_token=\(NetworkService.token)&fields=description&count=2&v=5.154&extended=1") else { return }
+	func getGroups(completion: @escaping ([Group]) -> Void) {
+		guard let url = URL(string: "https://api.vk.com/method/groups.get?access_token=\(NetworkService.token)&fields=description&v=5.199&extended=1&count=10") else { return }
 		
 		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
-				let groups = try JSONDecoder().decode(GroupsModel.self, from: data)
-				
+				let groups = try JSONDecoder().decode(GroupsModel.self, from: data).response.items
+				completion(groups)
 			} catch { print(error) }
 		}.resume()
 	}
 	
-	func getPhotos() {
-		guard let url = URL(string: "https://api.vk.com/method/photos.get?access_token=\(NetworkService.token)&count=1&v=5.199&album_id=profile") else { return }
+	func getPhotos(completion: @escaping ([Photo]) -> Void) {
+		guard let url = URL(string: "https://api.vk.com/method/photos.get?access_token=\(NetworkService.token)&v=5.199&&album_id=profile&count=10") else { return }
 		
 		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
-				let photos = try JSONDecoder().decode(PhotosModel.self, from: data)
-
+				let photos = try JSONDecoder().decode(PhotosModel.self, from: data).response.items
+				completion(photos ?? [])
 			} catch { print(error) }
 		}.resume()
 	}
-
+	
 }

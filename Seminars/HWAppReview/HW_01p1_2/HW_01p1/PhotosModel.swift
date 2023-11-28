@@ -18,9 +18,9 @@ struct Photos: Decodable {
 struct Photo: Decodable {
 	var id: Int
 	var text: String
-	var sizes: [Sizes]
+	var sizes: [Size]
 }
 
-struct Sizes: Codable {
+struct Size: Codable {
 	var url: String
 }

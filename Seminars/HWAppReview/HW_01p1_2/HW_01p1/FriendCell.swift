@@ -9,7 +9,7 @@ import UIKit
 
 final class FriendCell: UITableViewCell {
 	
-	private var friendImageView = UIImageView(image: UIImage(systemName: "Person"))
+	private var friendImageView = UIImageView()
 	
 	private var friendOnline: UILabel = {
 		let label = UILabel()
