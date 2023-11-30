@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8700A0042B17B7D500448D1C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8700A0032B17B7D500448D1C /* ProfileModel.swift */; };
+		8700A00B2B17F00F00448D1C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8700A00A2B17F00F00448D1C /* ProfileViewController.swift */; };
 		8741DE4C2B0CF2000087A78D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8741DE4B2B0CF2000087A78D /* NetworkService.swift */; };
 		8741DE4E2B0CFA420087A78D /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8741DE4D2B0CFA420087A78D /* FriendsModel.swift */; };
 		8741DE502B0D0E0F0087A78D /* GroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8741DE4F2B0D0E0F0087A78D /* GroupsModel.swift */; };
@@ -26,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8700A0032B17B7D500448D1C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		8700A00A2B17F00F00448D1C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		8741DE4B2B0CF2000087A78D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		8741DE4D2B0CFA420087A78D /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		8741DE4F2B0D0E0F0087A78D /* GroupsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsModel.swift; sourceTree = "<group>"; };
@@ -82,6 +86,7 @@
 				878516BC2AC593B4006A3140 /* Assets.xcassets */,
 				878516BE2AC593B4006A3140 /* LaunchScreen.storyboard */,
 				878516C12AC593B4006A3140 /* Info.plist */,
+				8700A00A2B17F00F00448D1C /* ProfileViewController.swift */,
 				87D801882AC73A710005053F /* FriendsViewController.swift */,
 				87AA803D2ACAE23B0042B77A /* GroupsViewController.swift */,
 				87AA803F2ACAE2680042B77A /* PhotosViewController.swift */,
@@ -90,6 +95,7 @@
 				87AA803B2ACAD9230042B77A /* PhotoCell.swift */,
 				87AA80412ACAE6F80042B77A /* Constants.swift */,
 				8741DE4B2B0CF2000087A78D /* NetworkService.swift */,
+				8700A0032B17B7D500448D1C /* ProfileModel.swift */,
 				8741DE4D2B0CFA420087A78D /* FriendsModel.swift */,
 				8741DE4F2B0D0E0F0087A78D /* GroupsModel.swift */,
 				8741DE512B0D0E380087A78D /* PhotosModel.swift */,
@@ -167,6 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8700A00B2B17F00F00448D1C /* ProfileViewController.swift in Sources */,
+				8700A0042B17B7D500448D1C /* ProfileModel.swift in Sources */,
 				8741DE522B0D0E380087A78D /* PhotosModel.swift in Sources */,
 				8741DE4C2B0CF2000087A78D /* NetworkService.swift in Sources */,
 				87AA80402ACAE2680042B77A /* PhotosViewController.swift in Sources */,

@@ -32,7 +32,7 @@ final class NetworkService {
 			guard let data = data else { return }
 			do {
 				let groups = try JSONDecoder().decode(GroupsModel.self, from: data).response.items
-				completion(groups)
+				completion(groups ?? [])
 			} catch { print(error) }
 		}.resume()
 	}
@@ -45,6 +45,18 @@ final class NetworkService {
 			do {
 				let photos = try JSONDecoder().decode(PhotosModel.self, from: data).response.items
 				completion(photos ?? [])
+			} catch { print(error) }
+		}.resume()
+	}
+	
+	func getProfileData(completion: @escaping (Profile) -> Void) {
+		guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.199") else { return }
+		
+		session.dataTask(with: url) { (data, _, error) in
+			guard let data = data else { return }
+			do {
+				let person = try JSONDecoder().decode(ProfileModel.self, from: data).response
+				completion(person)
 			} catch { print(error) }
 		}.resume()
 	}

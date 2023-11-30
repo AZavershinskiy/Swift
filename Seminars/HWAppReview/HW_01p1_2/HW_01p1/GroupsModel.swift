@@ -12,12 +12,12 @@ struct GroupsModel: Decodable {
 }
 
 struct Groups: Decodable {
-	var items: [Group]
+	var items: [Group]?
 }
 
 struct Group: Decodable {
 	var id: Int
-	var name: String?
+	var name: String
 	var photo: String?
 	var description: String?
 	
