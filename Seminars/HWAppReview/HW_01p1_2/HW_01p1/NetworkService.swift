@@ -49,7 +49,7 @@ final class NetworkService {
 		}.resume()
 	}
 	
-	func getProfileData(completion: @escaping (Profile) -> Void) {
+	func getProfileData(completion: @escaping (Profile?) -> Void) {
 		guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.199") else { return }
 		
 		session.dataTask(with: url) { (data, _, error) in

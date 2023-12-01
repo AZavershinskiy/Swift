@@ -8,7 +8,7 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
-	private var person = Profile()
+	private var person: Profile?
 	
 	private var personImageView = UIImageView()
 	
@@ -21,23 +21,26 @@ final class ProfileViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.backgroundColor = .white
 		title = "Profile"
+		
 		NetworkService().getProfileData{ [weak self] person in
 			self?.person = person
+			
 			DispatchQueue.main.async {
-				self?.reloadInputViews()
+				self?.personFullName.text = (self?.person?.firstName ?? "") + " " + (self?.person?.lastName ?? "")
 			}
-		}
-		personFullName.text = (person.firstName) + " " + (person.lastName)
-		DispatchQueue.global().async {
-			if let url = URL(string: self.person.photo ?? ""),
-			   let data = try? Data(contentsOf: url)
-			{
-				DispatchQueue.main.async {
-					self.personImageView.image = UIImage(data: data)
+			DispatchQueue.global().async {
+				if let url = URL(string: self?.person?.photo ?? ""),
+				   let data = try? Data(contentsOf: url)
+				{
+					DispatchQueue.main.async {
+						self?.personImageView.image = UIImage(data: data)
+					}
 				}
 			}
 		}
+		setupViews()
 	}
 	
 	private func setupViews() {
@@ -52,12 +55,13 @@ final class ProfileViewController: UIViewController {
 		personFullName.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
-			personImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-			personImageView.widthAnchor.constraint(equalToConstant: 50),
-			personImageView.heightAnchor.constraint(equalToConstant: 50),
+			personImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+			personImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+			personImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2),
+			personImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width / 2),
 			
-			personFullName.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 5),
-			personFullName.centerYAnchor.constraint(equalTo: personImageView.centerYAnchor)
+			personFullName.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 10),
+			personFullName.centerXAnchor.constraint(equalTo: personImageView.centerXAnchor)
 			
 		])
 	}
