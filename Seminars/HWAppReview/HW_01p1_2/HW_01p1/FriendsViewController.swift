@@ -17,7 +17,7 @@ final class FriendsViewController: UITableViewController {
 		title = "Friends"
 		
 		let buttonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(goToProfileViewController))
-//		navigationController?.navigationBar.topItem?.setRightBarButton(buttonItem, animated: true)
+		//		navigationController?.navigationBar.topItem?.setRightBarButton(buttonItem, animated: true)
 		navigationItem.rightBarButtonItem = buttonItem
 		
 		tableView.register(FriendCell.self, forCellReuseIdentifier: Constants.Identifier.photoCellIdentifier)
@@ -44,6 +44,11 @@ final class FriendsViewController: UITableViewController {
 private extension FriendsViewController {
 	
 	@objc func goToProfileViewController() {
-		navigationController?.pushViewController(ProfileViewController(), animated: true)
+		let animation = CATransition()
+		animation.type = .fade
+		animation.duration = 0.5
+		navigationController?.view.layer.add(animation, forKey: nil)
+		
+		navigationController?.pushViewController(ProfileViewController(), animated: false)
 	}
 }

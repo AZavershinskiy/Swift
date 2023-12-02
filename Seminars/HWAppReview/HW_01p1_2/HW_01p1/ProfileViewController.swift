@@ -10,7 +10,12 @@ import UIKit
 final class ProfileViewController: UIViewController {
 	private var person: Profile?
 	
-	private var personImageView = UIImageView()
+	private var personImageView: UIImageView = {
+		let image = UIImageView()
+		image.layer.cornerRadius = 180
+		image.layer.masksToBounds = true
+		return image
+	}()
 	
 	private var personFullName: UILabel = {
 		let label = UILabel()
@@ -57,8 +62,8 @@ final class ProfileViewController: UIViewController {
 		NSLayoutConstraint.activate([
 			personImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
 			personImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			personImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2),
-			personImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width / 2),
+			personImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 1.2),
+			personImageView.heightAnchor.constraint(equalToConstant: view.frame.size.width / 1.2),
 			
 			personFullName.topAnchor.constraint(equalTo: personImageView.bottomAnchor, constant: 10),
 			personFullName.centerXAnchor.constraint(equalTo: personImageView.centerXAnchor)
