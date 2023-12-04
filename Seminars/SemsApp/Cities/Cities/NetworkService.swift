@@ -36,7 +36,7 @@ final class NetworkService {
         guard let url = URL(string: "https://http.cat/\(errorCode)") else { return }
         
         session.dataTask(with: url) { data, _, _ in
-			print(data!)
+//            print(data)
         }.resume()
     }
     

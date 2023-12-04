@@ -14,6 +14,9 @@
 		512475C22B0BD2CF000D653B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512475C12B0BD2CF000D653B /* Movie.swift */; };
 		512475C42B0BD4C0000D653B /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512475C32B0BD4C0000D653B /* UIImageView+Extensions.swift */; };
 		512475C62B0BD734000D653B /* DogPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512475C52B0BD734000D653B /* DogPicture.swift */; };
+		515834252B18F81700E2EB45 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515834242B18F81700E2EB45 /* UserDefaultsService.swift */; };
+		515834272B18FE3100E2EB45 /* ChooseThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515834262B18FE3100E2EB45 /* ChooseThemeViewController.swift */; };
+		515834292B19012000E2EB45 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515834282B19012000E2EB45 /* Theme.swift */; };
 		51BAA6AC2B028E3E00A76380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAA6AB2B028E3E00A76380 /* AppDelegate.swift */; };
 		51BAA6AE2B028E3E00A76380 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAA6AD2B028E3E00A76380 /* SceneDelegate.swift */; };
 		51BAA6B02B028E3E00A76380 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BAA6AF2B028E3E00A76380 /* ViewController.swift */; };
@@ -35,6 +38,9 @@
 		512475C12B0BD2CF000D653B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		512475C32B0BD4C0000D653B /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		512475C52B0BD734000D653B /* DogPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogPicture.swift; sourceTree = "<group>"; };
+		515834242B18F81700E2EB45 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		515834262B18FE3100E2EB45 /* ChooseThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseThemeViewController.swift; sourceTree = "<group>"; };
+		515834282B19012000E2EB45 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		51BAA6A82B028E3E00A76380 /* Cities.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cities.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51BAA6AB2B028E3E00A76380 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		51BAA6AD2B028E3E00A76380 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +101,8 @@
 				51BAA6AB2B028E3E00A76380 /* AppDelegate.swift */,
 				51BAA6AD2B028E3E00A76380 /* SceneDelegate.swift */,
 				51BAA6AF2B028E3E00A76380 /* ViewController.swift */,
+				515834262B18FE3100E2EB45 /* ChooseThemeViewController.swift */,
+				515834282B19012000E2EB45 /* Theme.swift */,
 				51BAA6BF2B0297DB00A76380 /* NewViewController.swift */,
 				51E820482B0686C600F291A4 /* TableViewController.swift */,
 				51E8204A2B06879100F291A4 /* CustomTableViewCell.swift */,
@@ -102,6 +110,7 @@
 				51E8204C2B068DE400F291A4 /* CustomCollectionViewCell.swift */,
 				51E820502B0691C000F291A4 /* ImageViewController.swift */,
 				512475B72B0BC88D000D653B /* NetworkService.swift */,
+				515834242B18F81700E2EB45 /* UserDefaultsService.swift */,
 				512475C32B0BD4C0000D653B /* UIImageView+Extensions.swift */,
 				512475BE2B0BD147000D653B /* Models */,
 				51BAA6B42B028E3F00A76380 /* Assets.xcassets */,
@@ -191,12 +200,15 @@
 				51BAA6B02B028E3E00A76380 /* ViewController.swift in Sources */,
 				51BAA6AC2B028E3E00A76380 /* AppDelegate.swift in Sources */,
 				51E8204D2B068DE400F291A4 /* CustomCollectionViewCell.swift in Sources */,
+				515834252B18F81700E2EB45 /* UserDefaultsService.swift in Sources */,
 				512475BC2B0BCF71000D653B /* News.swift in Sources */,
 				51E8204F2B068E0A00F291A4 /* CollectionViewController.swift in Sources */,
+				515834292B19012000E2EB45 /* Theme.swift in Sources */,
 				512475BA2B0BC9C4000D653B /* City.swift in Sources */,
 				51BAA6AE2B028E3E00A76380 /* SceneDelegate.swift in Sources */,
 				51E820492B0686C600F291A4 /* TableViewController.swift in Sources */,
 				51BAA6C02B0297DB00A76380 /* NewViewController.swift in Sources */,
+				515834272B18FE3100E2EB45 /* ChooseThemeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

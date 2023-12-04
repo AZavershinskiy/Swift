@@ -54,10 +54,18 @@ final class ViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         return button
     }()
+    
+    private let chooseThemeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Choose Theme", for: .normal)
+        button.setTitleColor(.green, for: .highlighted)
+        button.backgroundColor = .blue
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
         
         setupView()
         setupConstraints()
@@ -77,6 +85,19 @@ final class ViewController: UIViewController {
         goToTableViewButton.addTarget(self, action: #selector(goToTableView), for: .touchUpInside)
         
         goToCollectionViewButton.addTarget(self, action: #selector(goToCollectionView), for: .touchUpInside)
+        
+        chooseThemeButton.addTarget(
+            self,
+            action: #selector(
+                goToChooseTheme
+            ),
+            for: .touchUpInside
+        )
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = Theme.currentTheme.backgroundColor
     }
     
     private func setupView() {
@@ -85,6 +106,7 @@ final class ViewController: UIViewController {
         view.addSubview(newButton)
         view.addSubview(goToTableViewButton)
         view.addSubview(goToCollectionViewButton)
+        view.addSubview(chooseThemeButton)
     }
     
     private func setupConstraints() {
@@ -93,6 +115,7 @@ final class ViewController: UIViewController {
         newButton.translatesAutoresizingMaskIntoConstraints = false
         goToTableViewButton.translatesAutoresizingMaskIntoConstraints = false
         goToCollectionViewButton.translatesAutoresizingMaskIntoConstraints = false
+        chooseThemeButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             // MARK: label
@@ -119,7 +142,11 @@ final class ViewController: UIViewController {
             // MARK: goToCollectionViewButton
             goToCollectionViewButton.topAnchor.constraint(equalTo: goToTableViewButton.bottomAnchor, constant: 20),
             goToCollectionViewButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            goToCollectionViewButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            goToCollectionViewButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            chooseThemeButton.topAnchor.constraint(equalTo: goToCollectionViewButton.bottomAnchor, constant: 20),
+            chooseThemeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chooseThemeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 }
@@ -137,7 +164,7 @@ private extension ViewController {
     
     @objc func changeViewColor() {
         isColorChanged.toggle()
-        view.backgroundColor = isColorChanged ? .yellow : .white
+        view.backgroundColor = isColorChanged ? .yellow : Theme.currentTheme.backgroundColor
     }
     
     @objc func goToTableView() {
@@ -149,6 +176,13 @@ private extension ViewController {
             CollectionViewController(
                 collectionViewLayout: UICollectionViewFlowLayout()
             ),
+            animated: true
+        )
+    }
+    
+    @objc func goToChooseTheme() {
+        navigationController?.pushViewController(
+            ChooseThemeViewController(),
             animated: true
         )
     }

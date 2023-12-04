@@ -10,6 +10,7 @@ import UIKit
 class TableViewController: UITableViewController, NetworkServiceDelegate {
     private let networkService = NetworkService()
     private var cities = [City]()
+    private let userDefaultService = UserDefaultsService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,7 @@ class TableViewController: UITableViewController, NetworkServiceDelegate {
             CustomTableViewCell.self,
             forCellReuseIdentifier: CustomTableViewCell.identifier
         )
+        cities = userDefaultService.get()
         networkService.fetchData()
 //        networkService.fetchData { [weak self] cities in
 //            self?.cities = cities
@@ -28,8 +30,14 @@ class TableViewController: UITableViewController, NetworkServiceDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = Theme.currentTheme.backgroundColor
+    }
+    
     func updateCities(cities: [City]) {
         self.cities = cities
+        userDefaultService.save(cities: cities)
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
