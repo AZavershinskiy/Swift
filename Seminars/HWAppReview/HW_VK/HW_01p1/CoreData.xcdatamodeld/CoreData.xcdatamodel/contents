@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23B92" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="FriendDate" representedClassName="FriendDate" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="FriendModelCD" representedClassName="FriendModelCD" syncable="YES" codeGenerationType="class">
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="online" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="GroupDate" representedClassName="GroupDate" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="GroupModelCD" representedClassName="GroupModelCD" syncable="YES" codeGenerationType="class">
+        <attribute name="caption" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="photo" optional="YES" attributeType="String"/>
+    </entity>
+</model>
