@@ -19,7 +19,7 @@ final class GroupsViewController: UITableViewController {
 		title = "Groups"
 		
 		groups = dataService.getGroups()
-		showAlert() // Added for testing
+		updateList()
 		
 		tableView.register(GroupCell.self, forCellReuseIdentifier: Constants.Identifier.photoCellIdentifier)
 		
@@ -50,15 +50,18 @@ final class GroupsViewController: UITableViewController {
 		return cell
 	}
 	
+	// MARK: Alert
 	private func showAlert() {
 		let date = dataService.getGroupsDate() == Date(timeIntervalSince1970: 0) ? "No data" : "Data is current as of \(dateConverter.dateInString(date: dataService.getGroupsDate()))"
 		let alert = UIAlertController(title: "Data update error", message: date, preferredStyle: .alert)
+		print(alert)
 		alert.addAction(UIAlertAction(title: "Close", style: .default))
 		present(alert, animated: true)
 	}
 	
 }
 
+// MARK: - @objc methods
 private extension GroupsViewController {
 	
 	@objc func updateList() {

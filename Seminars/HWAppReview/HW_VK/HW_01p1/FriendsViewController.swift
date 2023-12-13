@@ -19,7 +19,7 @@ final class FriendsViewController: UITableViewController {
 		title = "Friends"
 		
 		friends = dataService.getFriends()
-		showAlert() // Added for testing
+		updateList()
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(goToProfileViewController))
 		
@@ -60,6 +60,7 @@ final class FriendsViewController: UITableViewController {
 	private func showAlert() {
 		let date = dataService.getFriendsDate() == Date(timeIntervalSince1970: 0) ? "No data" : "Data is current as of \(dateConverter.dateInString(date: dataService.getFriendsDate()))"
 		let alert = UIAlertController(title: "Data update error", message: date, preferredStyle: .alert)
+		print(alert)
 		alert.addAction(UIAlertAction(title: "Close", style: .default))
 		present(alert, animated: true)
 	}
