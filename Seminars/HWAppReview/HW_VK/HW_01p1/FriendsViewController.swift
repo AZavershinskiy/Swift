@@ -58,8 +58,8 @@ final class FriendsViewController: UITableViewController {
 	}
 	
 	private func showAlert() {
-		let date = dataService.getFriendsDate() == Date(timeIntervalSince1970: 0) ? "No date" : dateConverter.dateInString(date: dataService.getFriendsDate())
-		let alert = UIAlertController(title: "Data update error", message: "Data is current as of \(date)", preferredStyle: .alert)
+		let date = dataService.getFriendsDate() == Date(timeIntervalSince1970: 0) ? "No data" : "Data is current as of \(dateConverter.dateInString(date: dataService.getFriendsDate()))"
+		let alert = UIAlertController(title: "Data update error", message: date, preferredStyle: .alert)
 		alert.addAction(UIAlertAction(title: "Close", style: .default))
 		present(alert, animated: true)
 	}

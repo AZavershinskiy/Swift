@@ -72,9 +72,9 @@ final class DataService {
 		guard let result = try? persistentContainer.viewContext.fetch(request) else { return Date.init(timeIntervalSince1970: 0) }
 		var date: Date?
 		result.forEach { item in
-			date = item.date!
+			date = item.date
 		}
-		return date!
+		return date ?? Date.init(timeIntervalSince1970: 0)
 	}
 		
 	
@@ -119,9 +119,9 @@ final class DataService {
 		guard let result = try? persistentContainer.viewContext.fetch(request) else { return Date.init(timeIntervalSince1970: 0) }
 		var date: Date?
 		result.forEach { item in
-			date = item.date!
+			date = item.date
 		}
-		return date!
+		return date ?? Date.init(timeIntervalSince1970: 0)
 	}
 	
 //		func delete(object: NSManagedObject) {

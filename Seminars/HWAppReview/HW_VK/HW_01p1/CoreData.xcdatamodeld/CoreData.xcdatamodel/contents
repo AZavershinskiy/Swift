@@ -8,7 +8,7 @@
         <attribute name="photo" optional="YES" attributeType="String"/>
     </entity>
     <entity name="FriendsDate" representedClassName="FriendsDate" syncable="YES" codeGenerationType="class">
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO" customClassName="Date"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" customClassName="Date"/>
     </entity>
     <entity name="GroupModelCD" representedClassName="GroupModelCD" syncable="YES" codeGenerationType="class">
         <attribute name="caption" optional="YES" attributeType="String"/>
