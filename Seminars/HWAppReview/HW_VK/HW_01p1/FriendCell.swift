@@ -11,7 +11,12 @@ final class FriendCell: UITableViewCell {
 	
 	var tap: ((String?, UIImage?) -> Void)?
 	
-	private var friendImageView = UIImageView()
+	private var friendImageView: UIImageView = {
+		let imageView = UIImageView()
+		imageView.layer.cornerRadius = 25
+		imageView.layer.masksToBounds = true
+		return imageView
+	}()
 	
 	private var friendOnline: UILabel = {
 		let label = UILabel()

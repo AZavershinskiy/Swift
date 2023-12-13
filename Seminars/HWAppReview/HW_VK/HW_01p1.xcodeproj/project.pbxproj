@@ -11,7 +11,6 @@
 		8700A00B2B17F00F00448D1C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8700A00A2B17F00F00448D1C /* ProfileViewController.swift */; };
 		871FF6EB2B24EFED002B5BE1 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871FF6EA2B24EFED002B5BE1 /* DataService.swift */; };
 		871FF6F12B251879002B5BE1 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 871FF6EF2B251879002B5BE1 /* CoreData.xcdatamodeld */; };
-		871FF6F32B25374F002B5BE1 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871FF6F22B25374F002B5BE1 /* DateConverter.swift */; };
 		87252F162B21F6FB0095B182 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87252F152B21F6FB0095B182 /* Theme.swift */; };
 		87252F182B21FACE0095B182 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87252F172B21FACE0095B182 /* ThemeViewController.swift */; };
 		8741DE4C2B0CF2000087A78D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8741DE4B2B0CF2000087A78D /* NetworkService.swift */; };
@@ -30,6 +29,7 @@
 		87AA80422ACAE6F80042B77A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AA80412ACAE6F80042B77A /* Constants.swift */; };
 		87D801892AC73A710005053F /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D801882AC73A710005053F /* FriendsViewController.swift */; };
 		87D8018B2AC73DB80005053F /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D8018A2AC73DB80005053F /* FriendCell.swift */; };
+		87DB464E2B27D6120088F4CF /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87DB464D2B27D6120088F4CF /* DateConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,6 @@
 		8700A00A2B17F00F00448D1C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		871FF6EA2B24EFED002B5BE1 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		871FF6F02B251879002B5BE1 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		871FF6F22B25374F002B5BE1 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 		87252F152B21F6FB0095B182 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		87252F172B21FACE0095B182 /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		8741DE4B2B0CF2000087A78D /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -58,6 +57,7 @@
 		87AA80412ACAE6F80042B77A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		87D801882AC73A710005053F /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		87D8018A2AC73DB80005053F /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		87DB464D2B27D6120088F4CF /* DateConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 				8700A00A2B17F00F00448D1C /* ProfileViewController.swift */,
 				87252F152B21F6FB0095B182 /* Theme.swift */,
 				87252F172B21FACE0095B182 /* ThemeViewController.swift */,
-				871FF6F22B25374F002B5BE1 /* DateConverter.swift */,
+				87DB464D2B27D6120088F4CF /* DateConverter.swift */,
 				878516BC2AC593B4006A3140 /* Assets.xcassets */,
 				878516BE2AC593B4006A3140 /* LaunchScreen.storyboard */,
 			);
@@ -202,7 +202,7 @@
 				87AA80422ACAE6F80042B77A /* Constants.swift in Sources */,
 				871FF6F12B251879002B5BE1 /* CoreData.xcdatamodeld in Sources */,
 				87AA803E2ACAE23B0042B77A /* GroupsViewController.swift in Sources */,
-				871FF6F32B25374F002B5BE1 /* DateConverter.swift in Sources */,
+				87DB464E2B27D6120088F4CF /* DateConverter.swift in Sources */,
 				878516B42AC593B2006A3140 /* AppDelegate.swift in Sources */,
 				8741DE4E2B0CFA420087A78D /* FriendsModel.swift in Sources */,
 				878516B62AC593B2006A3140 /* SceneDelegate.swift in Sources */,

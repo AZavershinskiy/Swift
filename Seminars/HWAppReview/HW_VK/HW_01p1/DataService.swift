@@ -33,7 +33,7 @@ final class DataService {
 	func addFriends(friends: [Friend]) {
 		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "FriendModelCD")
 		for friend in friends {
-			request.predicate = NSPredicate(format: "id=%@", argumentArray: [friend.id])
+			request.predicate = NSPredicate(format: "id = %@", argumentArray: [friend.id])
 			let result = try? persistentContainer.viewContext.fetch(request)
 			guard result?.first == nil else { continue }
 			let friendModel = FriendModelCD(context: persistentContainer.viewContext)
@@ -44,26 +44,89 @@ final class DataService {
 			friendModel.online = Int16(friend.online)
 		}
 		save()
-//		addFriendDate()
+		addFriendsDate()
 	}
 	
 	func getFriends() -> [Friend] {
 		let request: NSFetchRequest<FriendModelCD> = FriendModelCD.fetchRequest()
 		guard let friends = try? persistentContainer.viewContext.fetch(request) else { return [] }
 		var newFrinds: [Friend] = []
-		for friend in friends {
+		friends.forEach { friend in
 			newFrinds.append(Friend(id: Int(friend.id), firstName: friend.firstName, lastName: friend.lastName, photo: friend.photo, online: Int(friend.online)))
 		}
 		return newFrinds
 	}
 	
-	func addFriendDate() {
-
+	func addFriendsDate() {
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "FriendsDate")
+		request.predicate = NSPredicate(format: "date = %@")
+		let result = try? persistentContainer.viewContext.fetch(request)
+		guard result?.first == nil else { return }
+		let currentDate = FriendsDate(context: persistentContainer.viewContext)
+		currentDate.date = .now
+		save()
 	}
 	
-//	func delete(object: NSManagedObject) {
-//		persistentContainer.viewContext.delete(object)
-//		save()
-//	}
-
+	func getFriendsDate() -> Date {
+		let request: NSFetchRequest<FriendsDate> = FriendsDate.fetchRequest()
+		guard let result = try? persistentContainer.viewContext.fetch(request) else { return Date.init(timeIntervalSince1970: 0) }
+		var date: Date?
+		result.forEach { item in
+			date = item.date!
+		}
+		return date!
+	}
+		
+	
+	func addGroups(groups: [Group]) {
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GroupModelCD")
+		for group in groups {
+			request.predicate = NSPredicate(format: "id = %@", argumentArray: [group.id])
+			let result = try? persistentContainer.viewContext.fetch(request)
+			guard result?.first == nil else { continue }
+			let groupModel = GroupModelCD(context: persistentContainer.viewContext)
+			groupModel.id = Int64(group.id)
+			groupModel.caption = group.description
+			groupModel.name = group.name
+			groupModel.photo = group.photo
+		}
+		save()
+		addGroupsDate()
+	}
+	
+	func getGroups() -> [Group] {
+		let request: NSFetchRequest<GroupModelCD> = GroupModelCD.fetchRequest()
+		guard let groups = try? persistentContainer.viewContext.fetch(request) else { return [] }
+		var newGroups: [Group] = []
+		groups.forEach { group in
+			newGroups.append(Group(id: Int(group.id), name: group.name, photo: group.photo, description: group.caption))
+		}
+		return newGroups
+	}
+	
+	func addGroupsDate() {
+		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GroupsDate")
+		request.predicate = NSPredicate(format: "date = %@")
+		let result = try? persistentContainer.viewContext.fetch(request)
+		guard result?.first == nil else { return }
+		let currentDate = GroupsDate(context: persistentContainer.viewContext)
+		currentDate.date = .now
+		save()
+	}
+	
+	func getGroupsDate() -> Date {
+		let request: NSFetchRequest<GroupsDate> = GroupsDate.fetchRequest()
+		guard let result = try? persistentContainer.viewContext.fetch(request) else { return Date.init(timeIntervalSince1970: 0) }
+		var date: Date?
+		result.forEach { item in
+			date = item.date!
+		}
+		return date!
+	}
+	
+//		func delete(object: NSManagedObject) {
+//			persistentContainer.viewContext.delete(object)
+//			save()
+//		}
+	
 }

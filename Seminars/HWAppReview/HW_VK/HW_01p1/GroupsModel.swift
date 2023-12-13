@@ -17,7 +17,7 @@ struct Groups: Decodable {
 
 struct Group: Decodable {
 	var id: Int
-	var name: String
+	var name: String?
 	var photo: String?
 	var description: String?
 	

@@ -28,23 +28,31 @@ final class NetworkService {
 			}
 			if let error = error {
 				completion(.failure(error))
-				return }
+				return
+			}
 			do {
 				let friends = try JSONDecoder().decode(FriendsModel.self, from: data).response.items
-				completion(.success(friends))
+				completion(.success(friends ?? []))
 			} catch { completion(.failure(error)) }
 		}.resume()
 	}
 	
-	func getGroups(completion: @escaping ([Group]) -> Void) {
+	func getGroups(completion: @escaping (Result<[Group], Error>) -> Void) {
 		guard let url = URL(string: "https://api.vk.com/method/groups.get?access_token=\(NetworkService.token)&fields=description&v=5.199&extended=1") else { return }
 		
 		session.dataTask(with: url) { (data, _, error) in
-			guard let data = data else { return }
+			guard let data = data else { 
+				completion(.failure(NetworkError.dataError))
+				return
+			}
+			if let error = error {
+				completion(.failure(error))
+				return
+			}
 			do {
 				let groups = try JSONDecoder().decode(GroupsModel.self, from: data).response.items
-				completion(groups ?? [])
-			} catch { print(error) }
+				completion(.success(groups ?? []))
+			} catch { completion(.failure(error)) }
 		}.resume()
 	}
 	

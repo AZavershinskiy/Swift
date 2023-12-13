@@ -8,19 +8,23 @@
 import UIKit
 
 final class GroupsViewController: UITableViewController {
+	
 	private var groups = [Group]()
+	private var networkService = NetworkService()
+	private var dataService = DataService()
+	private var dateConverter = DateConverter()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Groups"
 		
+		groups = dataService.getGroups()
+		showAlert() // Added for testing
+		
 		tableView.register(GroupCell.self, forCellReuseIdentifier: Constants.Identifier.photoCellIdentifier)
-		NetworkService().getGroups{ [weak self] groups in
-			self?.groups = groups
-			DispatchQueue.main.async {
-				self?.tableView.reloadData()
-			}
-		}
+		
+		refreshControl = UIRefreshControl()
+		refreshControl?.addTarget(self, action: #selector(updateList), for: .valueChanged)
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -45,4 +49,37 @@ final class GroupsViewController: UITableViewController {
 		cell.updateCell(model: groups[indexPath.row])
 		return cell
 	}
+	
+	private func showAlert() {
+		let date = dataService.getGroupsDate() == Date(timeIntervalSince1970: 0) ? "No date" : dateConverter.dateInString(date: dataService.getGroupsDate())
+		let alert = UIAlertController(title: "Data update error", message: "Data is current as of \(date)", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Close", style: .default))
+		present(alert, animated: true)
+	}
+	
+}
+
+private extension GroupsViewController {
+	
+	@objc func updateList() {
+		networkService.getGroups { [weak self] result in
+			switch result {
+				case .success(let groups):
+					self?.groups = groups
+					self?.dataService.addGroups(groups: groups)
+					DispatchQueue.main.async {
+						self?.tableView.reloadData()
+					}
+				case .failure(_):
+					self?.groups = self?.dataService.getGroups() ?? []
+					DispatchQueue.main.async {
+						self?.showAlert()
+					}
+			}
+			DispatchQueue.main.async {
+				self?.refreshControl?.endRefreshing()
+			}
+		}
+	}
+	
 }

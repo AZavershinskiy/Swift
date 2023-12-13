@@ -12,7 +12,7 @@ struct FriendsModel: Decodable {
 }
 
 struct Friends: Decodable {
-	var items: [Friend]
+	var items: [Friend]?
 }
 
 struct Friend: Decodable {

@@ -10,13 +10,16 @@ import UIKit
 final class FriendsViewController: UITableViewController {
 	
 	private var friends = [Friend]()
+	private var networkService = NetworkService()
 	private var dataService = DataService()
+	private var dateConverter = DateConverter()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		title = "Friends"
 		
 		friends = dataService.getFriends()
+		showAlert() // Added for testing
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(goToProfileViewController))
 		
@@ -24,8 +27,6 @@ final class FriendsViewController: UITableViewController {
 		
 		refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self, action: #selector(updateList), for: .valueChanged)
-		
-		getFriends()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -53,38 +54,21 @@ final class FriendsViewController: UITableViewController {
 		cell.tap = { [weak self] fullName, photo in
 			self?.navigationController?.pushViewController(ProfileViewController(isUserProfile: false, photo: photo, fullName: fullName), animated: true)
 		}
-		cell.backgroundColor = .clear
 		return cell
 	}
 	
-	func getFriends() {
-		NetworkService().getFriends{ [weak self] result in
-			switch result {
-				case .success(let friends):
-					self?.friends = friends
-					self?.dataService.addFriends(friends: friends)
-					DispatchQueue.main.async {
-						self?.tableView.reloadData()
-					}
-				case .failure(_):
-					self?.friends = self?.dataService.getFriends() ?? []
-					DispatchQueue.main.async {
-						self?.showAlert()
-					}
-			}
-		}
+	private func showAlert() {
+		let date = dataService.getFriendsDate() == Date(timeIntervalSince1970: 0) ? "No date" : dateConverter.dateInString(date: dataService.getFriendsDate())
+		let alert = UIAlertController(title: "Data update error", message: "Data is current as of \(date)", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Close", style: .default))
+		present(alert, animated: true)
 	}
+	
+	
 }
 
 
 private extension FriendsViewController {
-	func showAlert() {
-//		let date = DateConverter.dateConvert(date: dataService.getFriendDate())
-		let date = "oldDate (temp)"
-		let alert  = UIAlertController(title: "Failed to retrieve data", message: "Data is current as of \(date)", preferredStyle: .alert)
-		alert.addAction(UIAlertAction(title: "Close", style: .default))
-		present(alert, animated: true)
-	}
 	
 	@objc func goToProfileViewController() {
 		let animation = CATransition()
@@ -95,7 +79,7 @@ private extension FriendsViewController {
 	}
 	
 	@objc func updateList() {
-		NetworkService().getFriends { [weak self] result in
+		networkService.getFriends { [weak self] result in
 			switch result {
 				case .success(let friends):
 					self?.friends = friends
@@ -114,4 +98,6 @@ private extension FriendsViewController {
 			}
 		}
 	}
+	
+	
 }
