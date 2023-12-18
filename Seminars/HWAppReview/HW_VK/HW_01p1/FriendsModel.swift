@@ -4,6 +4,7 @@
 //
 //  Created by Andrey Zavershinskiy on 21.11.2023.
 //
+// MARK: - Setting up a Friend List Model
 
 import UIKit
 
@@ -21,7 +22,7 @@ struct Friend: Decodable {
 	var lastName: String?
 	var photo: String?
 	var online: Int
-	
+
 	enum CodingKeys: String, CodingKey {
 		case id
 		case firstName = "first_name"

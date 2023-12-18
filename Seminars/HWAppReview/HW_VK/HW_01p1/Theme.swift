@@ -4,15 +4,18 @@
 //
 //  Created by Andrey Zavershinskiy on 07.12.2023.
 //
+// MARK: - Setting up Themes for the Application
 
 import UIKit
 
+/// List of available Themes
 enum AllAppTheme {
 	case white
 	case blue
 	case green
 }
 
+/// Protocol for Themes
 protocol AppTheme {
 	var type: AllAppTheme { get }
 	var backroundColor: UIColor { get }
@@ -21,10 +24,12 @@ protocol AppTheme {
 	var textOnlineColor: UIColor { get }
 }
 
+/// Current Theme
 final class Theme {
 	static var currentTheme: AppTheme = WhiteTheme()
 }
 
+/// White Theme Options
 final class WhiteTheme: AppTheme {
 	var type: AllAppTheme = .white
 	var backroundColor: UIColor = .white
@@ -33,6 +38,7 @@ final class WhiteTheme: AppTheme {
 	var textOnlineColor: UIColor = .blue
 }
 
+/// Blue Theme Options
 final class BlueTheme: AppTheme {
 	var type: AllAppTheme = .blue
 	var backroundColor: UIColor = .blue
@@ -41,6 +47,7 @@ final class BlueTheme: AppTheme {
 	var textOnlineColor: UIColor = .orange
 }
 
+/// Green Theme Options
 final class GreenTheme: AppTheme {
 	var type: AllAppTheme = .green
 	var backroundColor: UIColor = .green

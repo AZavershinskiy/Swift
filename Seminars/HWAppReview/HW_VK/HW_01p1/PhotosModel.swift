@@ -4,6 +4,7 @@
 //
 //  Created by Andrey Zavershinskiy on 21.11.2023.
 //
+// MARK: - Setting up a Photo List Model
 
 import UIKit
 

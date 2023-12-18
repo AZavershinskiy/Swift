@@ -1,0 +1,18 @@
+disabled_rules:
+  - trailing_whitespace
+  - switch_case_alignment
+
+excluded:
+- Pods
+
+line_length: 200
+
+identifier_name:
+  allowed_symbols: "_"
+
+function_body_length: 50
+
+type_body_length : 200
+
+cyclomatic_complexity:
+  warning: 11

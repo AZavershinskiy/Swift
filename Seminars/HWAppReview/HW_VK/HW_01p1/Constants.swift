@@ -4,6 +4,7 @@
 //
 //  Created by Andrey Zavershinskiy on 16.11.2023.
 //
+// MARK: - List of cell identifiers
 
 import UIKit
 

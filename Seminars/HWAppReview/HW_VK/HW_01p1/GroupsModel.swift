@@ -4,6 +4,7 @@
 //
 //  Created by Andrey Zavershinskiy on 21.11.2023.
 //
+// MARK: - Setting up a Group List Model
 
 import UIKit
 
@@ -20,7 +21,7 @@ struct Group: Decodable {
 	var name: String?
 	var photo: String?
 	var description: String?
-	
+
 	enum CodingKeys: String, CodingKey {
 		case id
 		case name

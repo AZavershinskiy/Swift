@@ -4,12 +4,14 @@
 //
 //  Created by Andrey Zavershinskiy on 09.12.2023.
 //
+// MARK: - Storing downloaded data
 
 import Foundation
 import CoreData
 
 final class DataService {
-	
+
+	// MARK: Data stack
 	lazy var persistentContainer: NSPersistentContainer = {
 		let persistentContainer = NSPersistentContainer(name: "CoreData")
 		persistentContainer.loadPersistentStores(completionHandler: { (_, error) in
@@ -19,7 +21,8 @@ final class DataService {
 		})
 		return persistentContainer
 	}()
-	
+
+	// MARK: - Saving data after changes
 	func save() {
 		if persistentContainer.viewContext.hasChanges {
 			do {
@@ -29,7 +32,8 @@ final class DataService {
 			}
 		}
 	}
-	
+
+	// MARK: - Saving a Friends List
 	func addFriends(friends: [Friend]) {
 		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "FriendModelCD")
 		for friend in friends {
@@ -46,7 +50,8 @@ final class DataService {
 		save()
 		addFriendsDate()
 	}
-	
+
+	// MARK: - Getting a Friends List
 	func getFriends() -> [Friend] {
 		let request: NSFetchRequest<FriendModelCD> = FriendModelCD.fetchRequest()
 		guard let friends = try? persistentContainer.viewContext.fetch(request) else { return [] }
@@ -56,7 +61,8 @@ final class DataService {
 		}
 		return newFrinds
 	}
-	
+
+	// MARK: - Recording the save date of the Friends List
 	func addFriendsDate() {
 		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "FriendsDate")
 		request.predicate = NSPredicate(format: "date = %@")
@@ -66,7 +72,8 @@ final class DataService {
 		currentDate.date = .now
 		save()
 	}
-	
+
+	// MARK: - Getting the save date of the Friends List
 	func getFriendsDate() -> Date {
 		let request: NSFetchRequest<FriendsDate> = FriendsDate.fetchRequest()
 		guard let result = try? persistentContainer.viewContext.fetch(request) else { return Date.init(timeIntervalSince1970: 0) }
@@ -76,8 +83,8 @@ final class DataService {
 		}
 		return date ?? Date.init(timeIntervalSince1970: 0)
 	}
-		
-	
+
+	// MARK: - Saving a Groups List
 	func addGroups(groups: [Group]) {
 		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GroupModelCD")
 		for group in groups {
@@ -93,7 +100,8 @@ final class DataService {
 		save()
 		addGroupsDate()
 	}
-	
+
+	// MARK: - Getting a Groups List
 	func getGroups() -> [Group] {
 		let request: NSFetchRequest<GroupModelCD> = GroupModelCD.fetchRequest()
 		guard let groups = try? persistentContainer.viewContext.fetch(request) else { return [] }
@@ -103,7 +111,8 @@ final class DataService {
 		}
 		return newGroups
 	}
-	
+
+	// MARK: - Recording the save date of the Groups List
 	func addGroupsDate() {
 		let request = NSFetchRequest<NSFetchRequestResult>(entityName: "GroupsDate")
 		request.predicate = NSPredicate(format: "date = %@")
@@ -113,7 +122,8 @@ final class DataService {
 		currentDate.date = .now
 		save()
 	}
-	
+
+	// MARK: - Getting the save date of the Groups List
 	func getGroupsDate() -> Date {
 		let request: NSFetchRequest<GroupsDate> = GroupsDate.fetchRequest()
 		guard let result = try? persistentContainer.viewContext.fetch(request) else { return Date.init(timeIntervalSince1970: 0) }
@@ -123,10 +133,10 @@ final class DataService {
 		}
 		return date ?? Date.init(timeIntervalSince1970: 0)
 	}
-	
-//		func delete(object: NSManagedObject) {
-//			persistentContainer.viewContext.delete(object)
-//			save()
-//		}
-	
+
+	//	 MARK: - Example data removal method
+	//		func delete(object: NSManagedObject) {
+	//			persistentContainer.viewContext.delete(object)
+	//			save()
+	//		}
 }

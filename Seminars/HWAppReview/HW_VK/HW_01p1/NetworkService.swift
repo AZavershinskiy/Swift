@@ -4,23 +4,22 @@
 //
 //  Created by Andrey Zavershinskiy on 21.11.2023.
 //
+// MARK: - Settings for receiving data from the network
 
 import Foundation
 
 final class NetworkService {
-	
 	enum NetworkError: Error {
 		case dataError
 	}
-	
+
 	private let session = URLSession.shared
-	
 	static var token = ""
-	//	static var userID = ""
-	
+
+	// MARK: - Downloading data from the network about the User's Friends List
 	func getFriends(completion: @escaping (Result<[Friend], Error>) -> Void) {
 		guard let url = URL(string: "https://api.vk.com/method/friends.get?access_token=\(NetworkService.token)&fields=photo_200_orig,online&v=5.199") else { return }
-		
+
 		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else {
 				completion(.failure(NetworkError.dataError))
@@ -36,12 +35,13 @@ final class NetworkService {
 			} catch { completion(.failure(error)) }
 		}.resume()
 	}
-	
+
+	// MARK: - Downloading data from the network about the User's Groups List
 	func getGroups(completion: @escaping (Result<[Group], Error>) -> Void) {
 		guard let url = URL(string: "https://api.vk.com/method/groups.get?access_token=\(NetworkService.token)&fields=description&v=5.199&extended=1") else { return }
-		
+
 		session.dataTask(with: url) { (data, _, error) in
-			guard let data = data else { 
+			guard let data = data else {
 				completion(.failure(NetworkError.dataError))
 				return
 			}
@@ -55,10 +55,11 @@ final class NetworkService {
 			} catch { completion(.failure(error)) }
 		}.resume()
 	}
-	
+
+	// MARK: - Downloading data from the network about the User's Photo List
 	func getPhotos(completion: @escaping ([Photo]) -> Void) {
 		guard let url = URL(string: "https://api.vk.com/method/photos.get?access_token=\(NetworkService.token)&v=5.199&&album_id=profile") else { return }
-		
+
 		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
@@ -67,10 +68,11 @@ final class NetworkService {
 			} catch { print(error) }
 		}.resume()
 	}
-	
+
+	// MARK: - Downloading data from the network about the User
 	func getProfileData(completion: @escaping (Profile?) -> Void) {
 		guard let url = URL(string: "https://api.vk.com/method/account.getProfileInfo?access_token=\(NetworkService.token)&v=5.199") else { return }
-		
+
 		session.dataTask(with: url) { (data, _, error) in
 			guard let data = data else { return }
 			do {
@@ -79,5 +81,5 @@ final class NetworkService {
 			} catch { print(error) }
 		}.resume()
 	}
-	
+
 }
